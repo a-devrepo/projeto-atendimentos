@@ -1,7 +1,7 @@
 import controllers.AtendimentoController;
 import factories.ConnectionFactory;
 import repositories.AtendimentoRepository;
-import services.AtendimentoService;
+import services.OpenAIService;
 
 import java.util.Scanner;
 
@@ -11,8 +11,8 @@ public class Main {
 
         var connectionFactory = ConnectionFactory.getConnectionFactory();
         var atendimentoRepository = new AtendimentoRepository(connectionFactory);
-        var atendimentoService = new AtendimentoService(atendimentoRepository);
-        var atendimentoController = new AtendimentoController(new Scanner(System.in), atendimentoService);
+        var atendimentoService = new OpenAIService();
+        var atendimentoController = new AtendimentoController(new Scanner(System.in), atendimentoService, atendimentoRepository);
         atendimentoController.gerarAtendimento();
     }
 }
